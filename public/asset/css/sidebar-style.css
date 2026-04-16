@@ -1,11 +1,12 @@
 :root {
     --primary-orange: #d34a31;
-    --primary-hover: #b83d27; 
+    --primary-hover: #b83d27;
     --sidebar-bg: #ffffff;
     --main-bg: #f3f4f6;
     --text-dark: #1f2937;
     --text-muted: #6b7280;
     --white: #ffffff;
+    --border-color: #e5e7eb;
 }
 
 * {
@@ -15,7 +16,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar {
     width: 260px;
     height: 100vh;
@@ -24,17 +25,22 @@
     left: 0;
     top: 0;
     box-shadow: 2px 0 10px rgba(0,0,0,0.05);
-    z-index: 100;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 .sidebar-header {
     padding: 30px 25px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.sidebar-logo { height: 35px; }
+.sidebar-logo {
+    height: 35px;
+}
 
 .brand-name {
     color: var(--text-dark);
@@ -43,7 +49,35 @@
     text-transform: uppercase;
 }
 
-/* --- ESTILO DE LOS BOTONES DEL MENÚ --- */
+.close-menu {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* MENÚ DE NAVEGACIÓN */
+.menu-content {
+    padding: 20px 0;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+}
+
+.menu-section {
+    margin-bottom: 25px;
+}
+
+.menu-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
 .menu-item {
     display: flex;
     align-items: center;
@@ -53,32 +87,45 @@
     color: var(--text-dark);
     margin: 4px 15px;
     border-radius: 10px;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
-/* Cambio de color al pasar el mouse (Hover) */
-.menu-item:hover { 
-    background: var(--primary-orange); 
-    color: white; 
-    transform: translateX(5px); 
+/* Cambio de color al pasar el mouse  */
+.menu-item:hover {
+    background: var(--primary-orange);
+    color: white;
+    transform: translateX(5px);
 }
 
-/* Estado Activo (el botón de la página donde estás) */
+/* Estado Activo */
 .menu-item.active {
     background: var(--primary-orange);
     color: white;
     box-shadow: 0 4px 12px rgba(211, 74, 49, 0.2);
 }
 
-/* Botón de Cerrar Sesión (Color diferente al pasar el mouse) */
+/* Botón de Cerrar Sesión  */
 .menu-item.logout:hover {
-    background: #ef4444; 
+    background: #ef4444;
     color: white;
 }
 
-/* --- BOTONES DE CONTROL (Ocultos en PC) --- */
-.mobile-toggle, .close-menu {
+.menu-item i {
+    width: 20px;
+    font-size: 1.1rem;
+}
+
+.menu-item span {
+    font-size: 0.9rem;
+}
+
+/* BOTÓN MÓVIL  */
+.mobile-toggle {
     display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
     background: var(--primary-orange);
     color: white;
     border: none;
@@ -86,181 +133,142 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.mobile-toggle {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1000;
+/* CONTENIDO PRINCIPAL */
+.main-page,
+.content-wrapper {
+    margin-left: 260px;
+    transition: margin-left 0.3s ease;
 }
 
-/* --- ADAPTACIÓN PARA MÓVILES (Menos de 768px) --- */
-@media (max-width: 768px) {
-    
-    .mobile-toggle {
-        display: block; /* Aparece el botón de hamburguesa */
-    }
+/* RESPONSIVE DESIGN */
 
-    .close-menu {
-        display: block; /* Aparece la X dentro del menú */
-        background: transparent;
-        color: var(--text-dark);
-    }
-
+@media (max-width: 1024px) {
     .sidebar {
-        left: -280px; /* Esconde el menú fuera de la pantalla */
-        width: 260px;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: none;
+        width: 80px;
     }
+    
+    .sidebar-header {
+        padding: 20px 15px;
+        justify-content: center;
+    }
+    
+    .brand-name,
+    .menu-title,
+    .menu-item span {
+        display: none;
+    }
+    
+    .menu-item {
+        justify-content: center;
+        padding: 12px;
+        margin: 4px 10px;
+    }
+    
+    .menu-item i {
+        width: auto;
+        font-size: 1.3rem;
+    }
+    
+    .main-page,
+    .content-wrapper {
+        margin-left: 80px;
+    }
+    
+    /* Efecto hover para mostrar texto en tablet */
+    .sidebar:hover {
+        width: 260px;
+    }
+    
+    .sidebar:hover .brand-name,
+    .sidebar:hover .menu-title,
+    .sidebar:hover .menu-item span {
+        display: inline;
+    }
+    
+    .sidebar:hover .menu-item {
+        justify-content: flex-start;
+        padding: 12px 20px;
+    }
+}
 
+/* Móviles */
+@media (max-width: 768px) {
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .sidebar {
+        left: -280px;
+        width: 260px;
+    }
+    
     .sidebar.active {
-        left: 0; /* Entra el menú al darle a la hamburguesa */
+        left: 0;
         box-shadow: 10px 0 30px rgba(0,0,0,0.3);
     }
-
-    .main-page, .content-wrapper {
+    
+    .sidebar.active .brand-name,
+    .sidebar.active .menu-title,
+    .sidebar.active .menu-item span {
+        display: inline;
+    }
+    
+    .sidebar.active .menu-item {
+        justify-content: flex-start;
+        padding: 12px 20px;
+    }
+    
+    .close-menu {
+        display: block;
+    }
+    
+    .main-page,
+    .content-wrapper {
         margin-left: 0 !important;
         width: 100% !important;
-        padding-top: 70px; /* Espacio para que el botón no tape el título */
-    }
-
-    /* Ajuste de filas de formulario */
-    .row {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    /* Ajuste de tarjetas de estadísticas */
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-    /* Botones de control para móvil (Ocultos en PC) */
-    .mobile-toggle {
-        display: none;
-        position: fixed;
-        top: 15px;
-        left: 15px;
-        z-index: 999;
-        background: #d34a31;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 1.2rem;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .close-menu {
-        display: none;
-        background: transparent;
-        border: none;
-        color: #1f2937;
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    /* Adaptación para pantallas pequeñas */
-    @media (max-width: 768px) {
-        .mobile-toggle {
-            display: block;
-        }
-
-        .close-menu {
-            display: block;
-        }
-
-        .sidebar {
-            left: -280px; /* Escondido a la izquierda */
-            z-index: 1000;
-            transition: all 0.4s ease;
-        }
-
-        .sidebar.active {
-            left: 0; /* Aparece al presionar el botón */
-            box-shadow: 10px 0 30px rgba(0,0,0,0.3);
-        }
-    }
-/* --- RESPONSIVE DESIGN --- */
-
-/* Tabletas y Móviles (Menos de 768px) */
-@media (max-width: 768px) {
-    
-    /* 1. Ajuste de la Sidebar */
-    .sidebar {
-        width: 70px; /* Se encoge para mostrar solo iconos */
-        overflow: hidden;
-    }
-
-    .sidebar:hover {
-        width: 260px; /* Se expande al tocarla o pasar el mouse */
-    }
-
-    .brand-name, .menu-title, .menu-item span {
-        display: none; /* Oculta el texto por defecto */
-    }
-
-    .sidebar:hover .brand-name, 
-    .sidebar:hover .menu-title, 
-    .sidebar:hover .menu-item span {
-        display: inline; /* Muestra el texto al expandir */
-    }
-
-    /* 2. Ajuste del Contenido Principal */
-    .main-page, .content-wrapper {
-        margin-left: 70px; /* Reduce el margen para aprovechar la pantalla */
-        width: calc(100% - 70px);
-        padding: 15px;
-    }
-
-    /* 3. Ajuste de Tarjetas de Estadísticas */
-    .stats-grid {
-        grid-template-columns: 1fr; /* Una sola columna: las tarjetas se apilan */
-        gap: 15px;
-    }
-
-    /* 4. Ajuste del Banner */
-    .dashboard-banner {
-        height: 150px;
-        padding: 20px;
-    }
-
-    .banner-text h1 {
-        font-size: 1.4rem;
-    }
-
-    /* 5. Ajuste de Formularios (si aplica) */
-    .main-container {
-        flex-direction: column; /* La imagen se va abajo del formulario */
-        width: 100%;
-        height: auto;
-    }
-
-    .image-section {
-        display: none; /* Opcional: ocultar imagen en móvil para ahorrar espacio */
-    }
-
-    .row {
-        flex-direction: column; /* Los inputs nombre/apellido se apilan */
-        gap: 0;
+        padding-top: 70px;
     }
 }
 
-/* Móviles muy pequeños (Menos de 480px) */
+/* Móviles muy pequeños */
 @media (max-width: 480px) {
-    .sidebar {
-        left: -70px; /* Se oculta totalmente */
+    .mobile-toggle {
+        padding: 8px 12px;
+        font-size: 1rem;
     }
     
-    .sidebar.active {
-        left: 0; /* Se muestra si añades un botón de "Hamburguesa" */
-    }
-
-    .main-page, .content-wrapper {
-        margin-left: 0;
+    .sidebar {
         width: 100%;
+        max-width: 280px;
     }
+    
+    .menu-item {
+        padding: 10px 16px;
+    }
+    
+    .menu-item i {
+        font-size: 1.1rem;
+    }
+    
+    .menu-item span {
+        font-size: 0.85rem;
+    }
+}
+
+/* Scroll personalizado para el menú */
+.menu-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-content::-webkit-scrollbar-track {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+    background: var(--primary-orange);
+    border-radius: 10px;
 }

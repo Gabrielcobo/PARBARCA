@@ -1,0 +1,298 @@
+/* VARIABLES */
+:root {
+    --primary-orange: #d34a31;
+    --primary-hover: #b83d27;
+    --bg-page: #d1d5db;
+    --bg-form: #fdfdfd;
+    --text-dark: #222;
+    --text-gray: #666;
+    --white: #ffffff;
+    --border-color: #e1e1e1;
+}
+
+/* RESETEO Y CENTRADO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../img/fondo.avif');
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-page);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura fija de pantalla */
+    margin: 0;
+    overflow: hidden; /* Evita scroll en el body */
+}
+
+/*  CONTENEDOR PRINCIPAL */
+.main-container {
+    background-color: var(--bg-form);
+    width: 95%;
+    max-width: 900px;
+    height: 580px; /* Altura reducida para evitar scroll */
+    display: flex;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* SECCIÓN FORMULARIO */
+.form-section {
+    flex: 1;
+    padding: 30px 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    height: 38px;
+    width: auto;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+.form-wrapper h1 {
+    font-size: 1.7rem;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 20px;
+}
+
+/* FILAS Y CAMPOS */
+.row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+.row .input-group {
+    flex: 1;
+}
+
+.input-group {
+    margin-bottom: 12px; /* Espacio reducido entre campos */
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-dark);
+}
+
+.input-group input, 
+.input-group select, 
+.input-group textarea {
+    width: 100%;
+    padding: 10px 15px; /* Inputs más compactos */
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 3px rgba(211, 74, 49, 0.1);
+}
+
+/* BOTONES Y ENLACES */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--primary-orange);
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.form-footer {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+
+.form-footer a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ALERTAS COMPACTAS */
+.alert {
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    border-left: 4px solid transparent;
+}
+
+.alert-error { background-color: #fee2e2; color: #dc2626; border-left-color: #dc2626; }
+.alert-success { background-color: #dcfce7; color: #16a34a; border-left-color: #16a34a; }
+
+/* SECCIÓN DERECHA: IMAGEN */
+.image-section {
+    flex: 1.1;
+    position: relative;
+    padding: 12px;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.overlay-card {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.overlay-icon {
+    background: var(--primary-orange);
+    color: white;
+    min-width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
+}
+
+.meeting-info span { font-size: 0.7rem; font-weight: 700; color: var(--text-gray); }
+.meeting-info p { font-size: 0.9rem; font-weight: 600; }
+
+/* AJUSTES PARA REGISTRO (Scroll interno solo si es necesario) */
+.form-section {
+    overflow-y: auto;
+}
+
+/* Scrollbar estética para la sección del formulario */
+.form-section::-webkit-scrollbar { width: 5px; }
+.form-section::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+/* Contenedor para centrar elementos */
+.button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Estilo del botón  */
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Permite que el padding defina el tamaño */
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    .main-container { flex-direction: column-reverse; height: 95vh; }
+    .image-section { display: none; } /* Oculta imagen en móvil para priorizar el formulario */
+    .row { flex-direction: column; gap: 0; }
+}  .password-hint {
+            display: block;
+            font-size: 11px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .password-hint i {
+            margin-right: 3px;
+            color: #3498db;
+        }
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .alert-error {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            border-left: 4px solid #dc2626;
+        }
+        .alert-success {
+            background-color: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #16a34a;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }

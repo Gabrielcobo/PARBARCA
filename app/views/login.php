@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Parbarca</title>
-    <link rel="stylesheet" href="public/asset/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/asset/css/login_register.css">
     <link rel="icon" type="image/x-icon" href="public/asset/img/logo.png">
 </head>
 <body>
@@ -17,22 +17,6 @@
             <div class="form-wrapper">
                 <h1>Bienvenido</h1>
                 <p class="subtitle">Ingresa tus credenciales para acceder</p>
-
-                <!-- Mostrar mensaje de bienvenida después del login exitoso -->          
-                <?php if(isset($_SESSION['welcome'])): ?>
-                    <div class="alert alert-success welcome-alert">
-                        <?php 
-                            echo $_SESSION['welcome']; 
-                        ?>
-                    </div>
-                    
-                    <!-- Redirigir automáticamente después de 5 segundos -->
-                    <script>
-                        setTimeout(function() {
-                            window.location.href = 'index.php?action=<?php echo $_SESSION['redirect_after_welcome']; ?>';
-                        }, 5000);
-                    </script>
-                <?php endif; ?>
 
                 <!-- Mostrar mensajes de error -->
                 <?php if(isset($_SESSION['error'])): ?>
@@ -53,6 +37,7 @@
                         ?>
                     </div>
                 <?php endif; ?>
+
                 <form action="index.php?action=login_post" method="POST">
                     <div class="input-group">
                         <label for="email">Correo electrónico</label>
@@ -62,7 +47,7 @@
                         <label for="password">Contraseña</label>
                         <input type="password" id="password" name="password" placeholder="••••••••••••••" required>
                     </div>
-                    <a href="index.php?action=recuperar_password" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="index.php?action=recuperar" class="forgot-password">¿Olvidaste tu contraseña?</a>
                     <button type="submit" class="btn-submit">Iniciar Sesión</button>
                 </form>
             </div>
@@ -81,13 +66,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Limpiar sesión de welcome después de la redirección -->
-    <?php if(isset($_SESSION['welcome']) && !isset($_SESSION['redirect_after_welcome'])): ?>
-        <?php 
-            unset($_SESSION['welcome']);
-            unset($_SESSION['redirect_after_welcome']);
-        ?>
-    <?php endif; ?>
 </body>
 </html>

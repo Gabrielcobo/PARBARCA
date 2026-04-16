@@ -41,13 +41,6 @@ CREATE TABLE `configuracion` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `configuracion`
---
-
-INSERT INTO `configuracion` (`id`, `empresa_nombre`, `empresa_rif`, `empresa_direccion`, `empresa_telefono`, `empresa_email`, `factura_prefijo`, `factura_numero_inicial`, `factura_ultimo_numero`, `logo`, `updated_at`) VALUES
-(1, 'PARBARCA', NULL, NULL, NULL, NULL, 'FAC-', 1, 0, NULL, '2026-04-02 10:51:14');
-
 -- --------------------------------------------------------
 
 --
@@ -133,15 +126,6 @@ CREATE TABLE `usuarios` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `cedula`, `telefono`, `direccion`, `password`, `rol`, `estado`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Principal', 'admin@parbarca.com', 'V-00000000', '0412-0000000', 'Oficina Principal', '$2y$10$ykczg2CBsDsQg7Y05adnte50bNd.QOcKVsGDGxxybXI5U2ya4WpxS', 'admin', 'activo', '2026-04-02 10:51:18', '2026-04-02 18:23:30'),
-(2, 'Empleado', 'Prueba', 'empleado@parbarca.com', 'V-12345678', '0412-1111111', 'Dirección Empleado', '$2y$10$HUciNNLQV47uWrG63qJhoeOmEF.gBuRn9OxvokGs4jrIfFZFEauP6', 'empleado', 'activo', '2026-04-02 19:01:24', '2026-04-02 19:50:38'),
-(3, 'Cliente', 'Prueba', 'cliente@parbarca.com', 'V-87654321', '0412-2222222', 'Dirección Cliente', '$2y$10$zop4TIWpY5AZAhQsaG2wNO4XUP96WOmru75g2FsHfuzILE.dgBW1e', 'cliente', 'activo', '2026-04-02 19:01:31', '2026-04-02 19:47:07'),
 
 -- --------------------------------------------------------
 
