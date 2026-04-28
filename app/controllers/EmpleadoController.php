@@ -7,6 +7,7 @@ use Models\Factura;
 use Models\Usuario;
 use Models\Configuracion;
 use Models\FacturaRequerimiento;
+use Core\Validator;
 
 class EmpleadoController{
     private $db;
@@ -16,7 +17,7 @@ class EmpleadoController{
     private $configModel;
     private $facturaRequerimientoModel;
     
-    // Constructor que recibe la conexión a la base de datos
+    // Conxion a la BD
     public function __construct($db){
         $this ->db =$db;
         $this ->requerimientoModel =new Requerimiento($db);
@@ -25,38 +26,32 @@ class EmpleadoController{
         $this ->configModel =new Configuracion($db);
         $this ->facturaRequerimientoModel =new FacturaRequerimiento($db);
         
-        // Verificar que sea empleado
-        if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !=='empleado') {
+        if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !=='empleado'){
+
             header('Location: index.php?action=login');
             exit();
         }
     }
     
-    // Mostrar dashboard con estadísticas y actividad reciente
+    // Dasboard
     public function dashboard(){
-            $user_id =$_SESSION['user_id'];
-        
-        // Obtener estadísticas desde los modelos
+        $userId =$_SESSION['user_id'];
         $requerimientos =$this ->requerimientoModel ->listarTodos();
-        $total_requerimientos_empleado =count($requerimientos);
+        $totalRequerimientosEmpleado =count($requerimientos);
         
-        // Contar requerimientos pendientes y finalizados
-        $pendientes_empleado =0;
-        $finalizados_empleado =0;
+        $pendientesEmpleado =0;
+        $finalizadosEmpleado =0;
         
         foreach ($requerimientos as $req) {
-            if ($req['estado'] =='pendiente')$pendientes_empleado++;
-            if ($req['estado'] =='finalizado')$finalizados_empleado++;
+            if ($req['estado'] =='pendiente') $pendientesEmpleado++;
+            if ($req['estado'] =='finalizado') $finalizadosEmpleado++;
         }
         
-        // Calcular total facturado en el mes actual para este empleado
-        $fecha_inicio =date('Y-m-01');
-        $fecha_fin =date('Y-m-t');
-        $total_facturado_empleado =$this ->facturaModel ->sumarPorEmpleadoPeriodo($user_id, $fecha_inicio, $fecha_fin);
-        
-        // Obtener actividad reciente desde el modelo
-        $actividad_reciente_empleado =$this ->requerimientoModel ->obtenerActividadEmpleado($user_id, 5);
+        $fechaInicio = date('Y-m-01');
+        $fechaFin = date('Y-m-t');
+        $totalFacturadoEmpleado =$this ->facturaModel ->sumarPorEmpleadoPeriodo($userId, $fechaInicio, $fechaFin);
+        $actividadRecienteEmpleado =$this ->requerimientoModel ->obtenerActividadEmpleado($userId, 5);
         
         require_once 'app/views/dashboard.php';
-    } 
+    }
 }

@@ -30,16 +30,19 @@
 }
 
 .sidebar-header {
-    padding: 30px 25px;
+    padding: 20px 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
 }
 
 .sidebar-logo {
     height: 35px;
+    width: auto;
+    flex-shrink: 0;
 }
 
 .brand-name {
@@ -56,6 +59,7 @@
     color: var(--text-dark);
     font-size: 1.5rem;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 /* MENÚ DE NAVEGACIÓN */
@@ -88,52 +92,35 @@
     margin: 4px 15px;
     border-radius: 10px;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
-/* Cambio de color al pasar el mouse  */
 .menu-item:hover {
     background: var(--primary-orange);
     color: white;
     transform: translateX(5px);
 }
 
-/* Estado Activo */
 .menu-item.active {
     background: var(--primary-orange);
     color: white;
     box-shadow: 0 4px 12px rgba(211, 74, 49, 0.2);
 }
 
-/* Botón de Cerrar Sesión  */
 .menu-item.logout:hover {
     background: #ef4444;
     color: white;
 }
 
 .menu-item i {
-    width: 20px;
+    width: 22px;
     font-size: 1.1rem;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .menu-item span {
     font-size: 0.9rem;
-}
-
-/* BOTÓN MÓVIL  */
-.mobile-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1001;
-    background: var(--primary-orange);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 /* CONTENIDO PRINCIPAL */
@@ -143,11 +130,11 @@
     transition: margin-left 0.3s ease;
 }
 
-/* RESPONSIVE DESIGN */
-
+/* RESPONSIVE - TABLET Y MÓVIL */
 @media (max-width: 1024px) {
     .sidebar {
-        width: 80px;
+        width: 70px;
+        overflow: hidden;
     }
     
     .sidebar-header {
@@ -164,50 +151,23 @@
     .menu-item {
         justify-content: center;
         padding: 12px;
-        margin: 4px 10px;
+        margin: 4px 8px;
     }
     
     .menu-item i {
         width: auto;
         font-size: 1.3rem;
+        margin: 0;
     }
     
     .main-page,
     .content-wrapper {
-        margin-left: 80px;
-    }
-    
-    /* Efecto hover para mostrar texto en tablet */
-    .sidebar:hover {
-        width: 260px;
-    }
-    
-    .sidebar:hover .brand-name,
-    .sidebar:hover .menu-title,
-    .sidebar:hover .menu-item span {
-        display: inline;
-    }
-    
-    .sidebar:hover .menu-item {
-        justify-content: flex-start;
-        padding: 12px 20px;
-    }
-}
-
-/* Móviles */
-@media (max-width: 768px) {
-    .mobile-toggle {
-        display: block;
-    }
-    
-    .sidebar {
-        left: -280px;
-        width: 260px;
+        margin-left: 70px;
     }
     
     .sidebar.active {
-        left: 0;
-        box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+        width: 260px;
+        overflow: visible;
     }
     
     .sidebar.active .brand-name,
@@ -221,44 +181,75 @@
         padding: 12px 20px;
     }
     
+    .sidebar.active .sidebar-header {
+        justify-content: space-between;
+    }
+    
     .close-menu {
         display: block;
     }
-    
-    .main-page,
-    .content-wrapper {
-        margin-left: 0 !important;
-        width: 100% !important;
-        padding-top: 70px;
-    }
 }
 
-/* Móviles muy pequeños */
-@media (max-width: 480px) {
-    .mobile-toggle {
-        padding: 8px 12px;
-        font-size: 1rem;
-    }
-    
+@media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        max-width: 280px;
+        width: 60px;
     }
     
-    .menu-item {
-        padding: 10px 16px;
+    .sidebar-logo {
+        height: 30px;
     }
     
     .menu-item i {
         font-size: 1.1rem;
     }
     
-    .menu-item span {
-        font-size: 0.85rem;
+    .main-page,
+    .content-wrapper {
+        margin-left: 60px;
+        padding: 15px;
+    }
+    
+    .sidebar.active {
+        width: 250px;
     }
 }
 
-/* Scroll personalizado para el menú */
+@media (max-width: 480px) {
+    .sidebar {
+        width: 55px;
+    }
+    
+    .sidebar-logo {
+        height: 25px;
+    }
+    
+    .main-page,
+    .content-wrapper {
+        margin-left: 55px;
+        padding: 10px;
+    }
+    
+    .sidebar.active {
+        width: 220px;
+    }
+    
+    .sidebar.active .menu-item span {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .sidebar {
+        width: 280px;
+    }
+    
+    .main-page,
+    .content-wrapper {
+        margin-left: 280px;
+    }
+}
+
+/* SCROLL PERSONALIZADO */
 .menu-content::-webkit-scrollbar {
     width: 4px;
 }
@@ -271,4 +262,17 @@
 .menu-content::-webkit-scrollbar-thumb {
     background: var(--primary-orange);
     border-radius: 10px;
+}
+
+/* ANIMACIONES */
+.menu-item i {
+    transition: transform 0.2s ease;
+}
+
+.menu-item:hover i {
+    transform: scale(1.1);
+}
+
+.sidebar {
+    transition: width 0.3s ease;
 }

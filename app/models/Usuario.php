@@ -86,7 +86,7 @@ class Usuario{
     public function registrarCliente($nombre, $apellido, $cedula, $telefono, $email, $direccion, $password){
         // VALIDAR CONTRASEÑA PRIMERO
         if (!Validator::validarPassword($password)){
-            return 'error contraseña invalida';
+            return 'error_password_invalida';
         }
         
         // Verificar email
@@ -96,7 +96,7 @@ class Usuario{
         $stmt ->execute();
         
         if ($stmt ->fetch()){
-            return 'email existe';
+            return 'email_existe';
         }
         
         // Verificar cédula
@@ -106,7 +106,7 @@ class Usuario{
         $stmt ->execute();
         
         if ($stmt ->fetch()) {
-            return 'cedula existe';
+            return 'cedula_existe';
         }
         
         // Registrar
@@ -141,7 +141,7 @@ class Usuario{
         $stmt ->execute();
         
         if ($stmt ->fetch()){
-            return 'email existe';
+            return 'email_existe';
         }
         
         // Verificar cédula
@@ -151,7 +151,7 @@ class Usuario{
         $stmt ->execute();
         
         if ($stmt ->fetch()){
-            return 'cedula existe';
+            return 'cedula_existe';
         }
 
         // Registrar

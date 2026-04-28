@@ -4,21 +4,15 @@ $currentAction =$_GET['action'] ?? 'dashboard';
 $rol =$_SESSION['user_rol'] ?? 'cliente';
 ?>
 
-<link rel="stylesheet" href="<?php echo BASE_URL; ?>public/asset/css/sidebar-style.css">
-
-<button class="mobile-toggle" id="openMenu">
-    <i class="fa-solid fa-bars"></i>
-</button>
+<link rel="stylesheet" href="./public/asset/css/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo BASE_URL; ?>public/asset/css/sidebar_style.css">
 
 <nav class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+    <div class="sidebar-header" id="sidebarToggle">
+        <div style="display: flex; align-items: center; gap: 12px; flex: 1; cursor: pointer;">
             <img src="<?php echo BASE_URL; ?>public/asset/img/logo.png" alt="Logo Parbarca" class="sidebar-logo">
             <span class="brand-name">Parbarca</span>
         </div>
-        <button class="close-menu" id="closeMenu">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
     </div>
     <div class="menu-content">
         
@@ -43,7 +37,7 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
             <?php endif; ?>
         </div>
 
-        <!-- SECCIÓN ADMIN  -->
+        <!-- SECCIÓN ADMIN -->
         <?php if($rol =='admin'): ?>
         <div class="menu-section">
             <p class="menu-title">Gestión</p>
@@ -58,7 +52,7 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
         </div>
         <?php endif; ?>
 
-        <!-- CLIENTES  -->
+        <!-- CLIENTES -->
         <?php if($rol =='admin' || $rol =='empleado'): ?>
         <div class="menu-section">
             <p class="menu-title">Clientes</p>
@@ -104,12 +98,12 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
         <!-- FACTURAS -->
         <div class="menu-section">
             <p class="menu-title">Facturas</p>
-            <?php if($rol == 'admin'): ?>
+            <?php if($rol =='admin'): ?>
                 <a href="index.php?action=admin_facturas" class="menu-item <?php echo ($currentAction =='admin_facturas') ? 'active' : ''; ?>">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                     <span>Facturas</span>
                 </a>
-            <?php elseif($rol == 'empleado'): ?>
+            <?php elseif($rol =='empleado'): ?>
                 <a href="index.php?action=empleado_facturas" class="menu-item <?php echo ($currentAction =='empleado_facturas') ? 'active' : ''; ?>">
                     <i class="fa-solid fa-file-invoice-dollar"></i>
                     <span>Mis Facturas</span>
@@ -126,12 +120,12 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
             <?php endif; ?>
         </div>
 
-        <!-- REPORTES  -->
+        <!-- REPORTES -->
         <?php if($rol =='admin'): ?>
         <div class="menu-section">
             <p class="menu-title">Reportes</p>
             <a href="index.php?action=admin_reporte_facturacion" class="menu-item <?php echo ($currentAction =='admin_reporte_facturacion') ? 'active' : ''; ?>">
-                <i class="fa-solid fa-chart-line"></i>
+                <i class="fa-solid fa-chart-bar"></i>
                 <span>Facturación</span>
             </a>
             <a href="index.php?action=admin_reporte_requerimientos" class="menu-item <?php echo ($currentAction =='admin_reporte_requerimientos') ? 'active' : ''; ?>">
@@ -141,7 +135,7 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
         </div>
         <?php endif; ?>
 
-        <!-- USUARIO  -->
+        <!-- USUARIO -->
         <div class="menu-section bottom">
             <p class="menu-title">Usuario</p>
             <?php if($rol =='admin'): ?>
@@ -167,24 +161,4 @@ $rol =$_SESSION['user_rol'] ?? 'cliente';
         </div>
     </div>
 </nav>
-
-<script>
-    const sidebar = document.getElementById('sidebar');
-    const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.getElementById('closeMenu');
-
-    if (openBtn) {
-        openBtn.addEventListener('click', () => { sidebar.classList.add('active'); });
-    }
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => { sidebar.classList.remove('active'); });
-    }
-
-    document.addEventListener('click', (event) => {
-        const isClickInsideSidebar = sidebar.contains(event.target);
-        const isClickOnOpenBtn = openBtn ? openBtn.contains(event.target) : false;
-        if (!isClickInsideSidebar && !isClickOnOpenBtn && sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-        }
-    });
-</script>
+<script src="<?php echo BASE_URL; ?>public/asset/js/sidebar.js"></script>
