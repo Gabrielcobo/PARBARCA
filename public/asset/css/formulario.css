@@ -1,0 +1,56 @@
+:root {
+    --rojo: #d34a31;
+    --rojo-hover: #b83d27;
+}
+
+.form-control:focus {
+    border-color: var(--rojo) !important;
+    box-shadow: 0 0 0 0.25rem rgba(211, 74, 49, 0.25) !important;
+}
+
+.btn-danger {
+    background-color: var(--rojo) !important;
+    border-color: var(--rojo) !important;
+}
+
+.btn-danger:hover {
+    background-color: var(--rojo-hover) !important;
+    border-color: var(--rojo-hover) !important;
+}
+
+.btn-secondary {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268 !important;
+    border-color: #5a6268 !important;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.swal-popup {
+    font-size: 0.9rem !important;
+    width: 90% !important;
+    max-width: 400px !important;
+}
+
+.swal-btn {
+    font-size: 0.85rem !important;
+    padding: 8px 16px !important;
+}
+
+@media (max-width: 480px) {
+    .swal-popup {
+        width: 95% !important;
+        padding: 1rem !important;
+    }
+    .swal-btn {
+        font-size: 0.8rem !important;
+        padding: 6px 12px !important;
+    }
+}

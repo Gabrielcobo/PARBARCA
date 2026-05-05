@@ -1,0 +1,79 @@
+/* Solo lo que Bootstrap no da */
+
+/* Encabezado factura */
+.factura-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #3498db;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Logo */
+.logo-factura {
+    max-height: 70px;
+    max-width: 150px;
+}
+
+/* Empresa */
+.empresa-section {
+    text-align: center;
+    flex: 1;
+}
+.empresa-section h2 {
+    margin: 0 0 5px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+.empresa-datos {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Título factura */
+.factura-titulo {
+    text-align: right;
+}
+.factura-titulo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.factura-numero {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Info cliente y factura */
+.info-cliente,
+.info-factura {
+    background: #f8f9fc;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    min-width: 200px;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+}
+.estado-pendiente { 
+    background: #fff3cd; 
+    color: #856404; 
+}
+.estado-pagada { 
+    background: #d4edda; 
+    color: #155724; 
+}
+.estado-anulada { 
+    background: #f8d7da; 
+    color: #721c24; 
+}
